@@ -97,6 +97,8 @@ button{
     box-shadow: 0px 1px 5px #110038;
     width: 1200px;
 }
+
+
 .barrabusqueda p{
     margin: 0;
     max-width: 1194px;
@@ -211,4 +213,50 @@ button{
     display: flexbox;
     width:  1200px;
     margin: 10px 120px
+}
+
+/* ------ Captura ------ */
+
+.captura{
+
+    background: #E6E6E6;
+    height: auto;
+    width: 680px;
+    box-shadow: 0px 1px 5px  #F7C9F3;
+    border: solid 1px rgb(204, 203, 203);
+    margin: 40px auto;
+}
+
+.capturatexto{
+
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 10% 90%;
+}  
+.capturatexto img{
+
+    margin-left: 20px;
+    
+    
+}  
+
+.barracaptura{
+    border: solid 1px rgb(204, 203, 203);
+    margin: 0 auto;
+    color: white;
+    font-family: 'Chakra Petch', sans-serif;
+    width: 678px;
+    height: 24px;
+    background-image: linear-gradient( to right, #4180F6,#F7C9F3);
+}
+#botonescapturar{
+  margin-left: 280px;
+}
+#botonblanco{
+    background-color: white;
+    margin-right: 5px;
+}
+#logos{
+    margin-top: 50px;
+    margin-left: 100px;
 }

@@ -225,6 +225,7 @@ button{
     box-shadow: 0px 1px 5px  #F7C9F3;
     border: solid 1px rgb(204, 203, 203);
     margin: 40px auto;
+    
 }
 
 .capturatexto{
@@ -250,13 +251,52 @@ button{
     background-image: linear-gradient( to right, #4180F6,#F7C9F3);
 }
 #botonescapturar{
-  margin-left: 280px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+#botonescapturar2{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#comenzar{
+
+    margin:0;
 }
 #botonblanco{
     background-color: white;
     margin-right: 5px;
 }
+#botoncamara{
+    width: 50px;
+}
 #logos{
     margin-top: 50px;
     margin-left: 100px;
+}
+#captura2{
+    display: none;
+}
+#video{
+
+    margin: 3%;
+}
+#contador{
+    background-color: white;
+    border: gray;
+    width: 200px;
+    height: 50px;
+}
+.rojo{
+
+    background-color: #ff6161;
+    display: none;
+}
+#botonparar{
+    width: 50px;
 }

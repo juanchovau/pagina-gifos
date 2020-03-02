@@ -17,7 +17,7 @@
         <img src="../images/gifOF_logo.png" alt="logo">
         </div>
     </header>
-    <div class="captura">
+    <div class="captura" id="captura">
     <div class="barracaptura">Crear gifos</div>
     <div class="capturatexto">
     <img src="../images/window img.png" alt="logo captura">
@@ -31,21 +31,26 @@
     <p>¿Quieres comenzar a crear tu <b>guifo</b> ahora?</p>
     <div id="botonescapturar">
         <button id="botonblanco">Cancelar</button>
-        <button onclick="getStreamAndRecord()">Comenzar</button>
+        <button id="comenzar" onclick="getStreamAndRecord()">Comenzar</button>
     </div>
     </div>
     </div>
 
     </div>
 
-    <div class="captura">
+    <div class="captura" id="captura2" >
         <div class="barracaptura">Crear gifos</div>
 
-        <video id="video" style="border: solid 1px black;" src=""></video>
+        <video id="video"  src=""></video>
 
         <div id="botonescapturar">
+            <div id="botonescapturar2"></div>
+            <div>
+            <button class="rojo" id="botonparar" ><img src="../images/camera.svg" alt="camara"></button>
+            <button class="rojo" id="botonparar2" >Listo</button>
             <button id="botoncamara"><img src="../images/camera.svg" alt="camara"></button>
             <button id="capturar"  >Capturar</button>
+            </div>
         </div>
         </div>
         </div>

@@ -2,6 +2,8 @@ function getStreamAndRecord () {
 
     document.getElementById("captura").style.display = "none";
     document.getElementById("captura2").style.display = "block";
+    document.getElementById("primerosBotones").style.display = "block";
+    document.getElementById("nuevosBotones").style.display = "none";
     navigator.mediaDevices.getUserMedia({
     
     audio: false,
@@ -25,38 +27,59 @@ function getStreamAndRecord () {
 }
 
 function grbar(stream) {
-    let recorder = RecordRTC(stream, {
+     recorder = RecordRTC(stream, {
         type: 'video'
     });}
 
     
-var image = document.getElementById("miguifos");
+var image = document.getElementById("video");
 
 function captureCamera(callback) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
         callback(camera);
     }).catch(function(error) {
-        alert('Unable to capture your camera. Please check console logs.');
+        alert('Algo salio mal');
         console.error(error);
     });
 }
 
 function stopRecordingCallback() {
-    document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
-    image.src = URL.createObjectURL(recorder.getBlob());
-    window.localStorage.setItem("img", image.src);
+    //document.querySelector('h1').innerHTML = 'Se guardo: ' + bytesToSize(recorder.getBlob().size);
+    image = URL.createObjectURL(recorder.getBlob())
+    
+    console.log(image)
+   let numeroParaAdignarLE = window.localStorage.length ;
+   let nombreParaAdignarLE =  "img" + numeroParaAdignarLE;
+   window.localStorage.setItem(nombreParaAdignarLE, image);
+    
+  
+       document.getElementById("segundosBotones").style.display = "none";
+       document.getElementById("nuevosBotones").style.display = "block";
+       let numberToGet = window.localStorage.length - 1 ;
+       let getNumber = "img" + numberToGet;
+       let myGifo = document.createElement("IMG"); 
+       myGifo.style.margin = "5px" 
+       myGifo.style.width = "290px" 
+       myGifo.style.height = "290px" 
+       myGifo.src =  localStorage.getItem(getNumber);              
+       document.getElementById("myGuifosContainer").appendChild(myGifo);
+       console.log(myGifo.src)
+   
 
     //recorder.camera.stop();
     //recorder.destroy();
     //recorder = null;
+    
 }
 
 var recorder; // globally accessible
 
-document.getElementById('capturar').onclick = function() {
+
+
+document.getElementById('primerosBotones').onclick = function() {
     this.disabled = true;
     captureCamera(function(camera) {
-        document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
+        //document.querySelector('h1').innerHTML = 'esta por empezar';
         recorder = RecordRTC(camera, {
             type: 'gif',
             frameRate: 1,
@@ -64,43 +87,9 @@ document.getElementById('capturar').onclick = function() {
             width: 360,
             hidden: 240,
             onGifRecordingStarted: function() {
-                
-                document.getElementById("botonparar").style.display = "block";
-                document.getElementById("botonparar2").style.display = "block";
-                //document.getElementById("contador").style.display = "block";
-                document.getElementById("botoncamara").style.display = "none";
-                document.getElementById("capturar").style.display = "none";
-                
-            },
-            onGifPreview: function(gifURL) {
-                //document.getElementById("video") .src = gifURL;
-                
-            }
-        });
-
-        recorder.startRecording();
-
-        // release camera on stopRecording
-        recorder.camera = camera;
-
-        document.getElementById('botonparar').disabled = false;
-        document.getElementById('botonparar2').disabled = false;
- 
-    });
-};
-
-document.getElementById('botoncamara').onclick = function() {
-    this.disabled = true;
-    captureCamera(function(camera) {
-        document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
-        recorder = RecordRTC(camera, {
-            type: 'gif',
-            frameRate: 1,
-            quality: 10,
-            width: 360,
-            hidden: 240,
-            onGifRecordingStarted: function() {
-                
+                document.getElementById("primerosBotones").style.display = "none";
+                document.getElementById("nuevosBotones").style.display = "none";
+                document.getElementById("segundosBotones").style.display = "block";
             },
             onGifPreview: function(gifURL) {
                
@@ -114,17 +103,35 @@ document.getElementById('botoncamara').onclick = function() {
         // release camera on stopRecording
         recorder.camera = camera;
 
-        document.getElementById('botonparar').disabled = false;
+        document.getElementById('primerosBotones').disabled = false;
  
     });
 };
 
-document.getElementById('botonparar').onclick = function(){
+document.getElementById("segundosBotones").onclick = function(){
     this.disabled = true;
     recorder.stopRecording(stopRecordingCallback);
+ 
+    
 };
+
+
 
 //convocar local storage
 
- let tst = document.getElementById("miguifo");
- tst.src = window.localStorage.getItem("img");
+
+if(localStorage.length > 0){
+
+ for(let i = 0; i < localStorage.length; i++ ){
+
+    let numberToGet = i ;
+    let getNumber = "img" + numberToGet;
+    let myGifo = document.createElement("IMG"); 
+    myGifo.style.margin = "5px" 
+    myGifo.style.width = "290px" 
+    myGifo.style.height = "290px" 
+    myGifo.src =  localStorage.getItem(getNumber);               
+    document.getElementById("myGuifosContainer").appendChild(myGifo);
+    console.log(myGifo.src)
+ }
+}

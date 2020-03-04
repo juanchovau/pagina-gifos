@@ -295,8 +295,17 @@ button{
 .rojo{
 
     background-color: #ff6161;
-    display: none;
+    
+}
+.verde{
+
+    background-color: #086805;
+    color: white;
+    
 }
 #botonparar{
     width: 50px;
+}
+.hiden{
+    display: none;
 }

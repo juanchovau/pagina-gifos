@@ -1,81 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../estilos/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../estilos/style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="barrasuperior">
-            <p>Bienvenidos/as a Guifos.com!======Donde los gifs están.//////Número de visitas: 12.765.803</p>
-        </div>
-        <div id="logos">
-        <img src="../images/arrow.svg" alt="flecha">
-        <img src="../images/gifOF_logo.png" alt="logo">
-        </div>
+      <div class="barrasuperior">
+        <p>
+          Bienvenidos/as a Guifos.com!======Donde los gifs están.//////Número de
+          visitas: 12.765.803
+        </p>
+      </div>
+      <div id="logos">
+        <img src="../images/arrow.svg" alt="flecha" />
+        <img src="../images/gifOF_logo.png" alt="logo" />
+      </div>
     </header>
     <div class="captura" id="captura">
-    <div class="barracaptura">Crear gifos</div>
-    <div class="capturatexto">
-    <img src="../images/window img.png" alt="logo captura">
-    <div>
-    <span><b>Aqui podrás crear tus propios guifos</b></span>
-    <p>Crear tu <b>guifo</b>es muy fácil, grabar cualquier imagen con tu cámara y obtén guifos personalizados. los pasos para creat tu guifo son:</p>
-    <p><b>1)</b> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</p>
-    <p><b>2)</b> Capturar tu momento guifo</p>
-    <p><b>3)</b> Revisar el momento</p>
-    <p><b>4)</b> Listo para subir y compartir!</p>
-    <p>¿Quieres comenzar a crear tu <b>guifo</b> ahora?</p>
-    <div id="botonescapturar">
-        <button id="botonblanco">Cancelar</button>
-        <button id="comenzar"onclick="getStreamAndRecord()" >Comenzar</button>
-    </div>
-    </div>
-    </div>
-
-    </div>
-
-    <div class="captura" id="captura2" >
-        <div class="barracaptura">Crear gifos</div>
-
-        <video id="video"  src=""></video>
-
-        <div id="botonescapturar">
-            <div id="botonescapturar2"></div>
-            <div>
-                <div id="segundosBotones" class="hiden">
-            <button class="rojo" id="botonparar" ><img src="../images/camera.svg" alt="camara"></button>
-            <button class="rojo" id="botonparar2" >Listo</button>
+      <div class="barracaptura">Crear gifos</div>
+      <div class="capturatexto">
+        <img src="../images/window img.png" alt="logo captura" />
+        <div>
+          <span><b>Aqui podrás crear tus propios guifos</b></span>
+          <p>
+            Crear tu <b>guifo</b>es muy fácil, grabar cualquier imagen con tu
+            cámara y obtén guifos personalizados. los pasos para creat tu guifo
+            son:
+          </p>
+          <p>
+            <b>1)</b> Dar permisos de acceso a la cámara (sólo por el tiempo de
+            uso)
+          </p>
+          <p><b>2)</b> Capturar tu momento guifo</p>
+          <p><b>3)</b> Revisar el momento</p>
+          <p><b>4)</b> Listo para subir y compartir!</p>
+          <p>¿Quieres comenzar a crear tu <b>guifo</b> ahora?</p>
+          <div id="botonescapturar">
+            <button id="botonblanco">Cancelar</button>
+            <button id="comenzar" onclick="getStreamAndRecord()">
+              Comenzar
+            </button>
+          </div>
         </div>
-            <div id="primerosBotones">
-            <button id="botoncamara"><img src="../images/camera.svg" alt="camara"></button>
-            <button id="capturar"  >Capturar</button>
-            </div>
-            <div id="nuevosBotones" class="hiden" onclick="getStreamAndRecord ()"  >
-                <button class="verde" >Grabar otro</button>
-            </div>
-            </div>
-        </div>
-        </div>
-        </div>
-    
-        </div>
-    
-<h1></h1>
-<img id="hola" src="" alt="">
-
-    <input  placeholder="mis gifos" type="text">
-
-    <div id="myGuifosContainer">
-
+      </div>
     </div>
 
+    <div class="captura" id="captura2">
+      <div class="barracaptura">Crear gifos</div>
+      <video id="video" src=""></video>
+      <div id="cajapantallafinal" >
+      <div id="cajavideo">
 
-<script src="../script/grabacion.js"></script>
-<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+      </div>
+      <div id="pantallafinal">
+        <h4>Guifo creado con 'exito</h4>
+        <div class="enlaceGuifo">
+          <button id="copiargif" >Copiar Enlace Guifo</button>
+          <button id="descargargif">Descargar Guifo</button>
+        </div>
+      </div>
+    </div>
 
-</body>
+      <div id="botonescapturar">
+        <div id="botonescapturar2"></div>
+        <div>
+          <div id="segundosBotones" class="hiden">
+            <button class="rojo" id="botonparar">
+              <img src="../images/camera.svg" alt="camara" />
+            </button>
+            <button class="rojo" id="botonparar2">Listo</button>
+          </div>
+          <div id="primerosBotones">
+            <button id="botoncamara">
+              <img src="../images/camera.svg" alt="camara" />
+            </button>
+            <button id="capturar">Capturar</button>
+          </div>
+          <div id="nuevosBotones" class="hiden">
+            <button onclick="getStreamAndRecord ()" class="verde">
+              Repetir Captura
+            </button>
+            <button id="subirGifo" class="verde">Subir Gifo</button>
+          </div>
+          <div id="botonfinal">
+            <button class="rojo">Listo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1></h1>
+    <img id="hola" src="" alt="" />
+
+    <input placeholder="mis gifos" type="text" />
+
+    <div id="myGuifosContainer"></div>
+
+    <script src="../script/grabacion.js"></script>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+  </body>
 </html>

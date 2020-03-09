@@ -37,43 +37,106 @@ function mostrarSubMenu() {
 //Final función cambio de tema
 
 //Inicio barra de busqueda
+let palabras2;
 
-function buscarGifs() {
-  let criterioDeBusqueda = document.getElementById("criterioDeBusqueda").value;
+function btnsBusqueda(){ 
+  document.getElementById("lienzoBusqueda").innerHTML = ""
+  if(sessionStorage.length <= 7 && sessionStorage.length != 0 ){
+    
+    for(let i= 0; i < sessionStorage.length; i++){
+      let btn = document.createElement("BUTTON");
+      btn.style.margin = "5px";
+      btn.style.width = "auto";
+      btn.style.padding = "3px";
+      btn.style.backgroundColor = "#4180f6"
+      btn.value = sessionStorage[ "busqueda" + i];
+      btn.innerHTML = sessionStorage["busqueda" + i];
+      btn.onclick = function(){
+        buscarGifs(btn.value)
+      }
+      
+      document.getElementById("lienzoBusqueda").appendChild(btn)
+    }
+  }
+  if(sessionStorage.length > 8){
 
-  function establecerCriterio(criterio) {
-    for (let i = 0; i < 24; i++) {
+    for(let i= sessionStorage.length - 7; i < 7; i++){
+      let btn = document.createElement("BUTTON");
+      btn.style.margin = "5px";
+      btn.style.width = "auto";
+      btn.style.padding = "5px";
+      btn.style.color = "white";
+      btn.style.backgroundColor = "#4180f6"
+      btn.style.value = sessionStorage[ "busqueda" + i];
+      btn.innerHTML = sessionStorage["busqueda" + i];
+      btn.onclick = function(){
+        buscarGifs(btn.value)
+      }
+      document.getElementById("lienzoBusqueda").appendChild(btn)
+    }
+
+  }
+}
+
+  function buscarGifs(criterio) {
+   
       fetch(
         "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=" +
           criterio +
           "&limit=25&offset=0&rating=G&lang=en"
       )
         .then(response => {
+          if(sessionStorage["IsThisFirstTime_Log_From_LiveServer"]){
+            window.sessionStorage.removeItem("IsThisFirstTime_Log_From_LiveServer")
+          }
+          window.sessionStorage.setItem( "busqueda" + sessionStorage.length ,  criterio)
+         console.log(sessionStorage)
           return response.json();
         })
         .then(json => {
-          return json.data[i].images.downsized.url;
-        })
-        .then(data1 => {
-          let hijosDeBusqueda = document.getElementById("lienzoBusqueda")
+          for (let i = 0; i < 25; i++){ 
+           
+            let palabras = json.data[i].title.split(" GIF");
+            palabras2 = palabras[0].split(" ");
+          
+          let data1 = json.data[i].images.downsized.url
+        
+        
+          let hijosDeBusqueda = document.getElementById("tendencias")
             .childNodes;
 
           if (hijosDeBusqueda.length > 23) {
-            hijosDeBusqueda[i].src = data1;
+            document.getElementById("tendencias").innerHTML = "";
+            document.getElementById("tendenciasholder").placeholder = " " + criterio + ":"
           } else {
-            var img1 = document.createElement("IMG");
-            img1.style.margin = "5px";
+            let img1 = document.createElement("DIV");
+            img1.style.margin = "5px ";
             img1.style.width = "290px";
             img1.style.height = "290px";
-            img1.src = data1;
-            document.getElementById("lienzoBusqueda").appendChild(img1);
+            img1.style.backgroundImage = "url(" + data1 + ")"
+            document.getElementById("tendencias").appendChild(img1);
+            img1.className = "casillarecomendacion";
+            img1.id = " #" +palabras2[0] + " #" +palabras2[1] + " #"+palabras2[2];
           }
-        });
-    }
+          
+      
+        }
+        btnsBusqueda()
+    });
+   
   }
 
-  establecerCriterio(criterioDeBusqueda);
-}
+  btnsBusqueda();
+
+ document.getElementById("buscar").onclick = function(){
+  buscarGifs(document.getElementById("criterioDeBusqueda").value);
+  document.getElementById("lienzoRecomendaciones").style.display = "none";
+  document.getElementById("criterioDeBusqueda").value = "";
+ }
+ 
+ 
+
+
 
 //Final barra de busqueda
 
@@ -133,7 +196,7 @@ fetch(
 //Final de peticion apis para casillas
 //Inicio display tendencias
 
-for (let i = 0; i < 24; i++) {
+
   fetch(
     "https://api.giphy.com/v1/gifs/trending?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&limit=25&rating=G"
   )
@@ -141,26 +204,32 @@ for (let i = 0; i < 24; i++) {
       return response.json();
     })
     .then(json => {
-      return json.data[i].images.downsized.url;
-    })
-    .then(data1 => {
-      var img1 = document.createElement("IMG");
+      for (let i = 0; i < 24; i++) {
+      let palabras = json.data[i].title.split(" GIF");
+       palabras2 = palabras[0].split(" ");
+      let data1 = json.data[i].images.downsized.url;
+    
+    
+      var img1 = document.createElement("DIV");
       img1.style.margin = "5px";
       img1.style.width = "290px";
       img1.style.height = "290px";
-      img1.src = data1;
-      document.getElementById("tendencias").appendChild(img1); // Append <button> to <body>
-    });
-}
+      img1.style.backgroundImage = "url(" + data1 + ")"
+      
+      document.getElementById("tendencias").appendChild(img1); 
+      img1.className = "casillarecomendacion";
+      img1.id = "#" +palabras2[0] + " #" +palabras2[1] + " #"+palabras2[2];
+    } });
 
-//Finaldisplay tendencia
+
+//Finaldisplay tendencias
 //inicio recomedaciones
 
 let recomendacionBusqueda = document.getElementById("criterioDeBusqueda");
 
 recomendacionBusqueda.addEventListener("keyup", () => {
   let criterio = recomendacionBusqueda.value;
-
+  document.getElementById("lienzoRecomendaciones").style.display = "block";
   fetch(
     "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=" +
       criterio +
@@ -170,25 +239,28 @@ recomendacionBusqueda.addEventListener("keyup", () => {
       return response.json();
     })
     .then(json => {
-      console.log(json.data[0]);
+      
       document.getElementById("lienzoRecomendaciones").innerHTML = "";
       let palabras = json.data[0].title.split(" GIF");
       return palabras[0].split(" ");
     })
     .then(recomendaciones => {
-      console.log(recomendaciones);
       recomendaciones.forEach(element => {
-        var recomendacion = document.createElement("BUTTON");
+        let recomendacion = document.createElement("BUTTON");
         recomendacion.style.width = "87%";
-        recomendacion.style.padding = "10px";
+        recomendacion.style.padding = "2px";
         recomendacion.style.margin = "10px";
-        recomendacion.style.backgroundColor = "#E6E6E6";
-        recomendacion.style.border = "solid black 1px";
+        recomendacion.style.backgroundColor = "#F0F0F0 ";
+        recomendacion.style.border = "gray solid 2px;";
+        recomendacion.style.boxShadow = "0px 1px 2px #B4B4B4 ";
+        recomendacion.style.fontSize = "16px"
+        recomendacion.style.paddingRight = "70%"
         recomendacion.innerHTML = element;
-        recomendacion.onclick = "establecerCriterio(" + element + ")";
-        document
-          .getElementById("lienzoRecomendaciones")
-          .appendChild(recomendacion);
+        document.getElementById("lienzoRecomendaciones").appendChild(recomendacion);
+        recomendacion.onclick = function (){
+          buscarGifs(element);
+          document.getElementById("lienzoRecomendaciones").style.display = "none";
+        }
       });
     });
 });

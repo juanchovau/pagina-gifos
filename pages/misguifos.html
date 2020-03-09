@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis guifos</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../estilos/style.css" />
+  </head>
+  <body id="body" class="ligthmode">
+    <header>
+      <div class="barrasuperior">
+        <p>
+          Bienvenidos/as a Guifos.com!======Donde los gifs están.//////Número de
+          visitas: 12.765.803
+        </p>
+      </div>
+      <div class="divbotones">
+        <a href="../index.html">
+          <img
+            id="ligthlogo"
+            class="show"
+            src="../images/gifOF_logo.png"
+            alt="logo_gifos"
+          />
+        </a>
+        <a href="../index.html">
+          <img
+            id="darklogo"
+            class="erase"
+            src="../images/gifOF_logo_dark.png"
+            alt="logo_gifos"
+          />
+        </a>
+        <div class="botones">
+          <a href="captura.html">
+            <button id="botoncrear">Crear Guifos</button></a
+          >
+          <div>
+            <div>
+              <button id="boton1" onclick="mostrarSubMenu()">
+                Elegir tema
+              </button>
+              <button onclick="mostrarSubMenu()" id="botonflecha">
+                <img src="../images/dropdown.svg" alt="flecha hacia abajo" />
+              </button>
+            </div>
+            <div class="subbotones">
+              <button onclick="ligth()" id="subboton1" class="subboton">
+                Ligth mode
+              </button>
+              <button onclick="dark()" id="subboton2" class="subboton">
+                Dark mode
+              </button>
+            </div>
+          </div>
+          <a id="misguifos" href="">Mis Guifos</a>
+        </div>
+      </div>
+    </header>
+    <input class="sugerimos" placeholder="mis gifos" type="text" />
+
+    <div id="myGuifosContainer"></div>
+
+    <script src="../script/misguifos.js"></script>
+
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+  </body>
+</html>

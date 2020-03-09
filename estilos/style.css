@@ -1,6 +1,9 @@
 #body {
   width: 1438px;
+
 }
+
+
 .ligthmode {
   background-color: white;
 }
@@ -204,13 +207,52 @@ button {
 }
 #tendencias {
   margin: 0 auto;
-  display: flexbox;
+  display: flex;
+  flex-wrap: wrap;
   width: 1200px;
   margin: 10px 120px;
+}
+.casillarecomendacion{
+  border: transparent;
+  background-repeat: no-repeat;
+  background-size:  290px 290px;
+  position: relative;
+}
+.casillarecomendacion::after{
+  content: attr(id) ;
+  width: 100%;
+  height: 0px;
+  background-image: linear-gradient(to right, #4180f6, #f7c9f3);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  color:transparent;
+  transition: height 1s, color 1s;
+  
+} 
+.casillarecomendacion:hover::after{
+  height: 30px;
+  color: #e6e6e6;
 }
 .lienzoRecomendaciones {
   background-color: #e6e6e6;
 }
+.botones a{
+  margin: 0;
+}
+#misguifos{
+  margin: 10px 30px;
+}
+#lienzoRecomendaciones{
+  background: #e6e6e6;
+}
+#lienzoBusqueda{
+  display: flex;
+  background-color:  #e6e6e6;
+}
+
+
 
 /* ------ Captura ------ */
 

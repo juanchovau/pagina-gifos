@@ -110,8 +110,10 @@ function stopRecordingCallback() {
     
     
     document.getElementById("botonfinal").onclick = function() {
-      document.getElementById("captura2").style.display = "none" ; 
+      document.getElementById("captura2").style.display = "none" ;
+      document.getElementById("pantallafinal").style.display = "none" 
       document.getElementById("captura").style.display = "block" ; 
+      document.querySelector("#botonfinal").style.display = "none";
     }
   
   };

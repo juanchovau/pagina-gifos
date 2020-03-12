@@ -43,7 +43,7 @@ function btnsBusqueda(){
   document.getElementById("lienzoBusqueda").innerHTML = ""
   if(sessionStorage.length <= 7 && sessionStorage.length != 0 ){
     
-    for(let i= 0; i < sessionStorage.length; i++){
+    for(let i= 1; i < sessionStorage.length; i++){
       let btn = document.createElement("BUTTON");
       btn.style.margin = "5px";
       btn.style.width = "auto";
@@ -77,6 +77,7 @@ function btnsBusqueda(){
     }
 
   }
+
 }
 
   function buscarGifs(criterio) {

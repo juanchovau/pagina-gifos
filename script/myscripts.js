@@ -43,12 +43,13 @@ function btnsBusqueda(){
   document.getElementById("lienzoBusqueda").innerHTML = ""
   if(sessionStorage.length <= 7 && sessionStorage.length != 0 ){
     
-    for(let i= 0; i < sessionStorage.length; i++){
+    for(let i= 1; i < sessionStorage.length; i++){
       let btn = document.createElement("BUTTON");
       btn.style.margin = "5px";
       btn.style.width = "auto";
       btn.style.padding = "3px";
-      btn.style.backgroundColor = "#4180f6"
+      btn.style.backgroundColor = "#4180f6";
+      btn.style.color = "white";
       btn.value = sessionStorage[ "busqueda" + i];
       btn.innerHTML = sessionStorage["busqueda" + i];
       btn.onclick = function(){
@@ -76,6 +77,7 @@ function btnsBusqueda(){
     }
 
   }
+
 }
 
   function buscarGifs(criterio) {
@@ -86,9 +88,7 @@ function btnsBusqueda(){
           "&limit=25&offset=0&rating=G&lang=en"
       )
         .then(response => {
-          if(sessionStorage["IsThisFirstTime_Log_From_LiveServer"]){
-            window.sessionStorage.removeItem("IsThisFirstTime_Log_From_LiveServer")
-          }
+          
           window.sessionStorage.setItem( "busqueda" + sessionStorage.length ,  criterio)
          console.log(sessionStorage)
           return response.json();
@@ -193,6 +193,10 @@ fetch(
   .then(data1 => {
     document.getElementById("casilla4").src = data1;
   });
+
+  if(sessionStorage["IsThisFirstTime_Log_From_LiveServer"]){
+    window.sessionStorage.removeItem("IsThisFirstTime_Log_From_LiveServer")
+  }
 //Final de peticion apis para casillas
 //Inicio display tendencias
 

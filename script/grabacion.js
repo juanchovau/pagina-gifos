@@ -24,7 +24,7 @@ function getStreamAndRecord() {
 
 function grbar(stream) {
   recorder = RecordRTC(stream, {
-    type: "video"
+    type: "gif"
   });
 }
 
@@ -64,61 +64,81 @@ function stopRecordingCallback() {
   myGifo.classList.add = "gifPrev";
   document.getElementById("cajavideo").appendChild(myGifo);
 
-  document.getElementById("subirGifo").onclick = function() {
+  let header = new Headers();
+  header.append("Content-Type", "application/gif");
+
+  let formData = new FormData();
+  // formData.append("api_key", "yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM");
+  formData.append("file", recorder.getBlob(), "mygif.gif");
+
+  let requestOptions = {
+    method: "POST",
+    // headers: header,
+    body: formData,
+    //mode: "no-cors",
+    redirect: "follow"
+  };
+
+  document.getElementById("subirGifo").onclick = async function() {
     this.disabled = true;
-    // fetch(
-    //   "https://upload.giphy.com/v1/gifs?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv",
-    //   {
-    //     // headers: {
-    //     //   "Content-Type": "application/gif"
-    //     // },
-    //     method: "POST",
-    //     mode: "no-cors",
-    //     referrerPolicy: 'no-referrer',
-    //      credentials: 'same-origin',
+    await fetch(
+      "https://upload.giphy.com/v1/gifs?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM",
+      requestOptions
+    )
+      .then(response => response.text())
+      .then(result => {
+        let primeraParteDeId = result.split(":");
 
-    //     // body: recorder.getBlob(),
-    //     body: form.get(nombreParaAdignarLE)
-    //   }
-    // )
-    //   //.then(response => response) //.json())
-    //   .then(data => {
-    //     console.log("Success:", data);
-    //     //document.getElementById("hola").src = data.url
-    //   })
-    //   .catch(error => {
-    //     console.error("MyError:", error);
-    //   });
-    let myGifos = document.createElement("IMG");
-    myGifos.style.margin = "5px";
-    myGifos.style.width = "290px";
-    myGifos.style.height = "290px";
-    myGifos.src = img1;
-    document.getElementById("myGuifosContainer").appendChild(myGifos);
-    window.localStorage.setItem(getNumber, img1);
+        return primeraParteDeId[2].split('"');
+      })
+      .then(id => {
+        let segundaParteDeId = id[1];
 
-    //document.querySelector("#cajavideo img").style.width = "50%"; 
+        // return urlgifo = "https://giphy.com/gifs/" + segundaParteDeId + "/giphy.gif"
+        return (urlgifo =
+          "https://api.giphy.com/v1/gifs/" +
+          segundaParteDeId +
+          "?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM");
+      })
+      .catch(error => console.log("error", error));
+
+    await fetch(urlgifo)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        return json.data.images.downsized.url;
+      })
+      .then(urlFinal => {
+        window.localStorage.setItem(getNumber, urlFinal);
+
+        let myGifos = document.createElement("IMG");
+        myGifos.style.margin = "5px";
+        myGifos.style.width = "290px";
+        myGifos.style.height = "290px";
+        myGifos.src = urlFinal;
+
+        document.getElementById("myGuifosContainer").appendChild(myGifos);
+      })
+      .catch(error => console.log("error", error));
+
+   
     document.getElementById("pantallafinal").style.display = "block";
     document.getElementById("pantallafinal").style.width = "50%";
     document.querySelector("#botonfinal").style.display = "block";
     document.getElementById("nuevosBotones").style.display = "none";
-    let copied = document.querySelector("#cajavideo img").src
-    document.getElementById("copiargif").onclick = function(){
-      copied.execCommand('copy');
-      console.log("hola")
-    }
     
-    
+
+
     document.getElementById("botonfinal").onclick = function() {
-      document.getElementById("captura2").style.display = "none" ; 
-      document.getElementById("captura").style.display = "block" ; 
-    }
-  
+      document.getElementById("captura2").style.display = "none";
+      document.getElementById("captura").style.display = "block";
+    };
   };
 }
 
-var recorder; // globally accessible
-
+var recorder;
+let urlgifo;
 document.getElementById("primerosBotones").onclick = function() {
   this.disabled = true;
   captureCamera(function(camera) {
@@ -152,6 +172,33 @@ document.getElementById("segundosBotones").onclick = function() {
   this.disabled = true;
   recorder.stopRecording(stopRecordingCallback);
 };
+
+// Funcion de descarga
+document.getElementById(
+  "descargargif"
+).onclick = function() {
+  let link = document.getElementById("downlink");
+  link.href = URL.createObjectURL(recorder.getBlob());
+  link.setAttribute("download", "giphy.gif");
+  link.click();
+};
+
+// Funcion de copiar
+let ultimoRegirstoDelLocal = localStorage.length -1 ;
+let ultimoElementoEnLocalStorage = localStorage.getItem("img" + ultimoRegirstoDelLocal)
+
+document.getElementById("copiargif").onclick = function(){
+
+  let copier = document.getElementById("copier");
+  copier.value =  ultimoElementoEnLocalStorage;
+  
+  copier.select();
+  document.execCommand("copy");
+  copier.value =  "";
+  
+
+}
+
 
 //convocar local storage
 

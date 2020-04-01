@@ -6,6 +6,7 @@
 
 .ligthmode {
   background-color: white;
+
 }
 .darkmode {
   background-color: #110038;
@@ -363,4 +364,17 @@ button {
   }
 #botonfinal {
   display: none;
+}
+.copier{
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  margin-top: auto;
+  margin-right: auto;
+}
+.copier:active{
+  height: 0;
+  width: 0;
+  border: 0;
+  box-shadow: none;
 }

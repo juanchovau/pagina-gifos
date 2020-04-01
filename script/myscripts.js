@@ -81,7 +81,7 @@ function btnsBusqueda(){
   function buscarGifs(criterio) {
    
       fetch(
-        "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=" +
+        "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=" +
           criterio +
           "&limit=25&offset=0&rating=G&lang=en"
       )
@@ -143,7 +143,7 @@ function btnsBusqueda(){
 //Inicio de peticion apis para casillas
 
 fetch(
-  "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=jonathan vanness&limit=25&offset=0&rating=G&lang=en"
+  "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=jonathan vanness&limit=25&offset=0&rating=G&lang=en"
 )
   .then(response => {
     return response.json();
@@ -156,7 +156,7 @@ fetch(
   });
 
 fetch(
-  "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=Sailor Mercury&limit=25&offset=0&rating=G&lang=en"
+  "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=Sailor Mercury&limit=25&offset=0&rating=G&lang=en"
 )
   .then(response => {
     return response.json();
@@ -169,7 +169,7 @@ fetch(
   });
 
 fetch(
-  "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=Fav Five&limit=25&offset=0&rating=G&lang=en"
+  "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=Fav Five&limit=25&offset=0&rating=G&lang=en"
 )
   .then(response => {
     return response.json();
@@ -182,7 +182,7 @@ fetch(
   });
 
 fetch(
-  "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=Unicors&limit=25&offset=0&rating=G&lang=en"
+  "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=Unicors&limit=25&offset=0&rating=G&lang=en"
 )
   .then(response => {
     return response.json();
@@ -198,7 +198,7 @@ fetch(
 
 
   fetch(
-    "https://api.giphy.com/v1/gifs/trending?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&limit=25&rating=G"
+    "https://api.giphy.com/v1/gifs/trending?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=G"
   )
     .then(response => {
       return response.json();
@@ -231,7 +231,7 @@ recomendacionBusqueda.addEventListener("keyup", () => {
   let criterio = recomendacionBusqueda.value;
   document.getElementById("lienzoRecomendaciones").style.display = "block";
   fetch(
-    "https://api.giphy.com/v1/gifs/search?api_key=eyWdbN1PQEckVgWNa49mXtqomVsAf8fv&q=" +
+    "https://api.giphy.com/v1/gifs/search?api_key=yu6rnmXFVx4BXqPPDN2hBSlWzjYCg2YM&q=" +
       criterio +
       "&limit=25&offset=0&rating=G&lang=en"
   )

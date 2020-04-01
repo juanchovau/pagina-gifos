@@ -131,18 +131,12 @@ function stopRecordingCallback() {
 
 
     document.getElementById("botonfinal").onclick = function() {
-<<<<<<< HEAD
-      document.getElementById("captura2").style.display = "none";
-      document.getElementById("captura").style.display = "block";
-    };
-=======
       document.getElementById("captura2").style.display = "none" ;
       document.getElementById("pantallafinal").style.display = "none" 
       document.getElementById("captura").style.display = "block" ; 
       document.querySelector("#botonfinal").style.display = "none";
     }
   
->>>>>>> 4d3f99e2b70ab866010a79a890c471978acad612
   };
 }
 

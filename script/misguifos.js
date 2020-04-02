@@ -1,6 +1,6 @@
 if (localStorage.length > 0) {
     for (let i = 0; i < localStorage.length; i++) {
-      let numberToGet = i;
+      let numberToGet = i + 1;
       let getNumber = "img" + numberToGet;
       let myGifo = document.createElement("IMG");
       myGifo.style.margin = "5px";

@@ -55,7 +55,7 @@ function stopRecordingCallback() {
   document.getElementById("segundosBotones").style.display = "none";
   document.getElementById("nuevosBotones").style.display = "block";
   document.getElementById("video").style.display = "none";
-  let numberToGet = window.localStorage.length;
+  let numberToGet = window.localStorage.length + 1;
   let getNumber = "img" + numberToGet;
 
   let myGifo = document.createElement("IMG");
@@ -110,6 +110,7 @@ function stopRecordingCallback() {
         return json.data.images.downsized.url;
       })
       .then(urlFinal => {
+        urlFinalDelGif = urlFinal;
         window.localStorage.setItem(getNumber, urlFinal);
 
         let myGifos = document.createElement("IMG");
@@ -142,10 +143,11 @@ function stopRecordingCallback() {
 
 var recorder;
 let urlgifo;
+let urlFinalDelGif;
+
 document.getElementById("primerosBotones").onclick = function() {
   this.disabled = true;
   captureCamera(function(camera) {
-    //document.querySelector('h1').innerHTML = 'esta por empezar';
     recorder = RecordRTC(camera, {
       type: "gif",
       frameRate: 1,
@@ -157,14 +159,11 @@ document.getElementById("primerosBotones").onclick = function() {
         document.getElementById("nuevosBotones").style.display = "none";
         document.getElementById("segundosBotones").style.display = "block";
       },
-      onGifPreview: function(gifURL) {
-        // document.getElementById("video") .src = gifURL;
-      }
+ 
     });
 
     recorder.startRecording();
 
-    // release camera on stopRecording
     recorder.camera = camera;
 
     document.getElementById("primerosBotones").disabled = false;
@@ -187,13 +186,11 @@ document.getElementById(
 };
 
 // Funcion de copiar
-let ultimoRegirstoDelLocal = localStorage.length -1 ;
-let ultimoElementoEnLocalStorage = localStorage.getItem("img" + ultimoRegirstoDelLocal)
 
 document.getElementById("copiargif").onclick = function(){
 
   let copier = document.getElementById("copier");
-  copier.value =  ultimoElementoEnLocalStorage;
+  copier.value =  urlFinalDelGif;
   
   copier.select();
   document.execCommand("copy");
@@ -207,7 +204,7 @@ document.getElementById("copiargif").onclick = function(){
 
 if (localStorage.length > 0) {
   for (let i = 0; i < localStorage.length; i++) {
-    let numberToGet = i;
+    let numberToGet = i + 1;
     let getNumber = "img" + numberToGet;
     let myGifo = document.createElement("IMG");
     myGifo.style.margin = "5px";

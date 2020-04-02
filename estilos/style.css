@@ -1,8 +1,10 @@
 #body {
   width: 1438px;
-
+  margin: 0 auto;
 }
-
+#centrar{
+  margin: 0 auto;
+}
 
 .ligthmode {
   background-color: white;
@@ -111,6 +113,7 @@ button {
 .barrabusqueda1 input {
   width: 1057px;
   margin: 0;
+  height: 25px;
 }
 .barrabusqueda1 button {
   width: 102px;
@@ -250,7 +253,7 @@ button {
 }
 #lienzoBusqueda{
   display: flex;
-  background-color:  #e6e6e6;
+  margin: 0 10%;
 }
 
 
@@ -377,4 +380,9 @@ button {
   width: 0;
   border: 0;
   box-shadow: none;
+  
+}
+#myGuifosContainer{
+  width: 1200px;
+  margin: 0 auto;
 }

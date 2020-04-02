@@ -110,7 +110,7 @@ function btnsBusqueda(){
             document.getElementById("tendenciasholder").placeholder = " " + criterio + ":"
           } else {
             let img1 = document.createElement("DIV");
-            img1.style.margin = "5px ";
+            img1.style.margin = " 5px ";
             img1.style.width = "290px";
             img1.style.height = "290px";
             img1.style.backgroundImage = "url(" + data1 + ")"
@@ -253,7 +253,7 @@ recomendacionBusqueda.addEventListener("keyup", () => {
         let recomendacion = document.createElement("BUTTON");
         recomendacion.style.width = "87%";
         recomendacion.style.padding = "2px";
-        recomendacion.style.margin = "10px";
+        recomendacion.style.margin = " 2px 10px";
         recomendacion.style.backgroundColor = "#F0F0F0 ";
         recomendacion.style.border = "gray solid 2px;";
         recomendacion.style.boxShadow = "0px 1px 2px #B4B4B4 ";
